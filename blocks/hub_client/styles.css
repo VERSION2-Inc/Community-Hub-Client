@@ -1,0 +1,12 @@
+/**
+ *  Hub Client block
+ *  
+ *  @author  VERSION2, Inc. (http://ver2.jp)
+ *  @version $Id: styles.css 152 2012-12-02 07:04:43Z malu $
+ */
+.block_hub_client .content fieldset { border:1px solid silver; padding:0 0.2em 0.2em 0.2em; margin-bottom:0.5em; }
+.block_hub_client .content fieldset legend { margin:0 0.2em; }
+.block_hub_client .content img.smallicon { margin:-1px 2px -4px 0; }
+.block_hub_client .content img.progressbar { width:160px; }
+.block_hub_client .content div.progressbar { width:155px; height:13px; margin:3px; padding:0; border:1px solid gray; text-align:left; background-color:mintcream; border-radius:5px; box-shadow:1px 1px 2px gray inset; }
+.block_hub_client .content div.progressbar div { width:1px; height:10px; margin:2px 1px 1px 1px; padding:0; background-color:forestgreen; border-radius:3px; }
