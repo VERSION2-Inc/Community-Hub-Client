@@ -4,6 +4,6 @@ defined('MOODLE_INTERNAL') || die;
 
 $plugin->version   = 2012120200;
 $plugin->release   = '2.3, release candidate 1';
-$plugin->requires  = 2012062503.00; // Moodle 2.3.3
+$plugin->requires  = 2012062500.00; // Moodle 2.3.0
 $plugin->component = 'block_hub_client';
 $plugin->cron      = 1;
