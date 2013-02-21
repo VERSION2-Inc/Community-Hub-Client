@@ -3,7 +3,7 @@
  *  MAJ Hub Client block
  *  
  *  @author  VERSION2, Inc.
- *  @version $Id: block_hub_client.php 152 2012-12-02 07:04:43Z malu $
+ *  @version $Id: block_hub_client.php 219 2013-02-21 13:25:26Z malu $
  */
 
 require_once __DIR__.'/classes/controller.php';
@@ -13,12 +13,17 @@ class block_hub_client extends block_base
     public function init()
     {
         $this->title   = get_string('title', __CLASS__);
-        $this->version = 2012113000;
+        $this->version = 2013022100;
     }
 
     public function applicable_formats()
     {
-        return array('course' => true);
+        return array('course' => true, 'course-category' => false);
+    }
+
+    public function instance_can_be_docked()
+    {
+        return false; // AJAX won't work with Dock
     }
 
     /**
@@ -42,7 +47,9 @@ class block_hub_client extends block_base
         $html = $controller->render_list($this->page->course->id);
 
         $this->page->requires->strings_for_js(array('login', 'cancel', 'username', 'password'), 'moodle');
+        $this->page->requires->strings_for_js(array('uploadcompleted'), __CLASS__);
         $this->page->requires->string_for_js('error:missingcourseware', __CLASS__);
+        $this->page->requires->string_for_js('confirm:editmetadata', __CLASS__);
         $this->page->requires->string_for_js('confirm:retryupload', __CLASS__);
         $this->page->requires->js_init_call('M.block_hub_client.init');
 
@@ -74,7 +81,7 @@ class block_hub_client extends block_base
                  JOIN {block_hub_client_backups} b ON b.accountid = a.id
                  WHERE s.deleted = 0 AND b.timestarted IS NULL');
             foreach ($tasks as $task) try {
-                // double check to prevent the backup from begin duplicated
+                // double check to prevent the backup from being duplicated
                 $backup = $DB->get_record('block_hub_client_backups',
                     array('id' => $task->id), '*', MUST_EXIST);
                 if (!empty($backup->timestarted) || !empty($backup->fileid))

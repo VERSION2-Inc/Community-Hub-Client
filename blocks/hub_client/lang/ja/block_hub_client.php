@@ -1,4 +1,4 @@
-<?php // $Id: block_hub_client.php 152 2012-12-02 07:04:43Z malu $
+<?php // $Id: block_hub_client.php 218 2013-02-21 13:11:22Z malu $
 
 $string['pluginname'] = 'Hub Client';
 $string['title'] = 'Hub クライアント';
@@ -11,6 +11,7 @@ $string['uploadtohub'] = 'Hub へアップロード';
 $string['scheduled'] = 'アップロード待機中';
 $string['uploading'] = 'アップロード中';
 $string['editmetadata'] = 'メタデータを編集';
+$string['uploadcompleted'] = 'アップロードが完了しました';
 
 $string['settings/method'] = 'アップロード方法';
 $string['settings/method:cron'] = 'Cron';
@@ -27,5 +28,7 @@ $string['error:createfailed'] = 'Hub 上でのコースウェア作成に失敗�
 $string['error:uploadfailed'] = 'コースのアップロードに失敗しました';
 $string['error:missingcourseware'] = 'Hub 上にコースウェアが見つかりません';
 
+$string['confirm:editmetadata'] = 'メタデータを編集しますか？';
 $string['confirm:deleteserver'] = '本当にこのサーバー設定を削除してもよろしいですか？';
-$string['confirm:retryupload'] = 'このコースのアップロードを再試行しますか？';
+$string['confirm:retryupload'] = 'Hub へのアップロードが失敗したか、削除されました。<br />
+このコースを再アップロードしますか？';

@@ -1,4 +1,4 @@
-<?php // $Id: block_hub_client.php 152 2012-12-02 07:04:43Z malu $
+<?php // $Id: block_hub_client.php 218 2013-02-21 13:11:22Z malu $
 
 $string['pluginname'] = 'Hub Client';
 $string['title'] = 'Hub Client';
@@ -11,6 +11,7 @@ $string['uploadtohub'] = 'Upload to Hub';
 $string['scheduled'] = 'Scheduled';
 $string['uploading'] = 'Uploading';
 $string['editmetadata'] = 'Edit metadata';
+$string['uploadcompleted'] = 'Upload completed';
 
 $string['settings/method'] = 'Backup/Upload method';
 $string['settings/method:cron'] = 'Cron';
@@ -27,5 +28,7 @@ $string['error:createfailed'] = 'Failed to create a courseware on the Hub';
 $string['error:uploadfailed'] = 'Failed to upload a course backup';
 $string['error:missingcourseware'] = 'Courseware on the Hub is missing';
 
+$string['confirm:editmetadata'] = 'Do you edit metadata now?';
 $string['confirm:deleteserver'] = 'Are you sure you want to delete this server?';
-$string['confirm:retryupload'] = 'Do you want to retry uploading this course?';
+$string['confirm:retryupload'] = 'Upload failed or courseware has been deleted.<br />
+Do you want to re-upload this course?';

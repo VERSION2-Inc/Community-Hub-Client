@@ -1,13 +1,20 @@
 Community Hub Client
 ====================
 
-version 2.3, release candidate 1 - 2012.12.02
+version 2.3, release 1 - 2013.02.21
+
+
+Change Log
+----------
+
+* 2.3, release 1
+  * Improvement: Shows popup when the upload completed
 
 
 Requirements
 ------------
 
-Moodle 2.3.3 (not compatible with 2.2 or earlier)
+Moodle 2.3 (not compatible with 2.2 or earlier)
 
 
 Installation

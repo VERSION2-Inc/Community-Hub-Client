@@ -3,7 +3,7 @@
  *  MAJ Hub Client
  *  
  *  @author  VERSION2, Inc.
- *  @version $Id: controller.php 152 2012-12-02 07:04:43Z malu $
+ *  @version $Id: controller.php 218 2013-02-21 13:11:22Z malu $
  */
 namespace hub_client;
 
@@ -200,6 +200,7 @@ class controller
      *  @global object $USER
      *  @global \moodle_database $DB
      *  @param int $coursewareid
+     *  @return int  The serverid
      *  @throws \moodle_exception
      */
     public function retry($coursewareid)
@@ -223,5 +224,6 @@ class controller
             array('userid' => $USER->id, 'coursewareid' => $coursewareid)
             );
         $this->queue($task->serverid, $task->courseid);
+        return $task->serverid;
     }
 }

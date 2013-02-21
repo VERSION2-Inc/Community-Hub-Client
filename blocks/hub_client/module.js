@@ -2,7 +2,7 @@
  *  Hub Client block
  *  
  *  @author  VERSION2, Inc.
- *  @version $Id: module.js 152 2012-12-02 07:04:43Z malu $
+ *  @version $Id: module.js 218 2013-02-21 13:11:22Z malu $
  */
 YUI.add('block_hub_client', function (Y)
 {
@@ -15,6 +15,9 @@ YUI.add('block_hub_client', function (Y)
         var course = {
             id: $block.one('a.editing_edit').get('href').match(/\/course\/view\.php\?id=(\d+)/)[1]
         };
+
+        /** @var {String[]}  The uploading server IDs */
+        var uploading_servers = [];
 
         /**
          *  Show an error message with given Ajax error
@@ -72,6 +75,25 @@ YUI.add('block_hub_client', function (Y)
                 $block.one('.servers').replace(response.responseText);
                 if ($block.one('.progressbar'))
                     setTimeout(refresh, 5000);
+
+                uploading_servers = uploading_servers.filter(function (serverid)
+                {
+                    var $legend = $block.one('legend.block_hub_client-server-' + serverid);
+                    if (!$legend)
+                        return false; // server has been deleted while uploading??
+                    var $editlink = $legend.ancestor().one('a[href*="edit.php"]');
+                    if ($editlink) {
+                        new M.core.confirm({
+                            title: M.str.block_hub_client['uploadcompleted'],
+                            question: M.str.block_hub_client['confirm:editmetadata']
+                        }).on('complete-yes', function ()
+                        {
+                            location.href = $editlink.get('href');
+                        });
+                        return false;
+                    }
+                    return true;
+                });
             });
         }
 
@@ -134,7 +156,9 @@ YUI.add('block_hub_client', function (Y)
                 {
                     post('retry', { 'courseware': missingcoursewareid }, function (response)
                     {
-                        location.href = M.cfg.wwwroot + '/course/view.php?id=' + course.id;
+                        var serverid = parseInt(response.responseText);
+                        uploading_servers.push(serverid);
+                        refresh();
                     });
                 });
             }
@@ -152,6 +176,7 @@ YUI.add('block_hub_client', function (Y)
             auth(serverid, null, null, function ()
             {
                 // queue a course backup/upload task if authentication succeeded
+                uploading_servers.push(serverid);
                 post('queue', { 'server': serverid, 'course': course.id }, refresh);
             });
         }
@@ -163,7 +188,11 @@ YUI.add('block_hub_client', function (Y)
          */
         this.cancel = function (serverid)
         {
-            post('cancel', { 'server': serverid, 'course': course.id }, refresh);
+            post('cancel', { 'server': serverid, 'course': course.id }, function ()
+            {
+                uploading_servers = uploading_servers.filter(function (id) { return id == serverid; });
+                refresh();
+            });
         }
     }
 
