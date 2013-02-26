@@ -3,7 +3,7 @@
  *  MAJ Hub Client
  *  
  *  @author  VERSION2, Inc.
- *  @version $Id: backup.php 152 2012-12-02 07:04:43Z malu $
+ *  @version $Id: backup.php 224 2013-02-26 03:15:05Z malu $
  */
 namespace hub_client;
 
@@ -12,7 +12,7 @@ require_once __DIR__.'/exception.php';
 /**
  *  Creates a backup of a course under given user's capabilities
  *  
- *  @global object $CFG
+ *  @global \stdClass $CFG
  *  @global \moodle_database $DB
  *  @param int $courseid
  *  @param int $userid
@@ -23,6 +23,7 @@ function backup($courseid, $userid)
 {
     global $CFG, $DB;
 
+    // uses $CFG
     require_once __DIR__.'/../../../backup/util/includes/backup_includes.php';
 
     // checks if the course exists

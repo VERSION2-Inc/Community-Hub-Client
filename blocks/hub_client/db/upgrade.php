@@ -1,4 +1,4 @@
-<?php // $Id: upgrade.php 152 2012-12-02 07:04:43Z malu $
+<?php // $Id: upgrade.php 224 2013-02-26 03:15:05Z malu $
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -13,8 +13,11 @@ function xmldb_block_hub_client_upgrade($oldversion = 0)
 
     $dbman = $DB->get_manager();
 
-//  if ($oldversion < 2012120200) {
-//  }
+    if ($oldversion < 2013022600) {
+        $method = get_config('block_hub_client', 'method');
+        if (empty($method) || ctype_digit($method))
+            set_config('method', 'immediate', 'block_hub_client');
+    }
 
     return true;
 }

@@ -1,4 +1,4 @@
-<?php // $Id: block_hub_client.php 218 2013-02-21 13:11:22Z malu $
+<?php // $Id: block_hub_client.php 225 2013-02-26 03:20:01Z malu $
 
 $string['pluginname'] = 'Hub Client';
 $string['title'] = 'Hub Client';
@@ -16,7 +16,7 @@ $string['uploadcompleted'] = 'Upload completed';
 $string['settings/method'] = 'Backup/Upload method';
 $string['settings/method:cron'] = 'Cron';
 $string['settings/method:immediate'] = 'Immediate';
-$string['settings/method/description'] = 'Cron is allowed to consume large memory and long time so that it can backup and upload more larger courses.';
+$string['settings/method/description'] = '<a href="http://docs.moodle.org/23/en/Cron">Cron</a> is allowed to consume larger memory and longer time so that it can backup and upload more larger courses.';
 $string['settings/servers'] = 'Manage Hub servers';
 
 $string['error:noserver'] = 'No server configured';

@@ -3,7 +3,7 @@
  *  MAJ Hub Client
  *  
  *  @author  VERSION2, Inc.
- *  @version $Id: controller.php 218 2013-02-21 13:11:22Z malu $
+ *  @version $Id: controller.php 224 2013-02-26 03:15:05Z malu $
  */
 namespace hub_client;
 
@@ -160,16 +160,21 @@ class controller
         $context = \context_course::instance($course->id);
         \require_capability('moodle/backup:backupcourse', $context);
 
-        $task = $DB->get_record('block_hub_client_backups',
+        $backup = $DB->get_record('block_hub_client_backups',
             array('accountid' => $account->id, 'courseid' => $course->id, 'timestarted' => null));
-        if (!$task) {
-            $task = new \stdClass;
-            $task->accountid  = $account->id;
-            $task->courseid   = $course->id;
-            $task->timequeued = time();
-            $DB->insert_record('block_hub_client_backups', $task);
+        if (!$backup) {
+            $backup = new \stdClass;
+            $backup->accountid  = $account->id;
+            $backup->courseid   = $course->id;
+            $backup->timequeued = time();
+            $backup->id = $DB->insert_record('block_hub_client_backups', $backup);
         } else {
             // already queued, do nothing
+        }
+
+        if (\get_config('block_hub_client', 'method') === 'immediate') {
+            require_once __DIR__.'/upload.php';
+            upload($backup->id, $course->id, $account->userid);
         }
     }
 
