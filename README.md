@@ -23,9 +23,9 @@ Installation
 ------------
 
 1. Click on Site administration > Plugins > Blocks > Hub Client
-2. Set up http://docs.moodle.org/23/en/Cron if you selected Cron upload mode
-3. Click on "Manage Hub servers"
-4. Enter a Hub server URL into the text input and click on Add button
+2. Click on "Manage Hub servers"
+3. Enter a Hub server URL into the text input and click on Add button
+4. Set up http://docs.moodle.org/23/en/Cron if you selected Cron upload mode
 
 (Currently, Hub Client version 2.3 does not support Moodle standard Hubs, e.g. MOOCH,
  but supports MAJ Community Hubs)
